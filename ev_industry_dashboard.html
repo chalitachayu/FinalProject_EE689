@@ -1,0 +1,301 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{font-family:var(--font-sans);color:var(--color-text-primary);padding:0 0 2rem}
+.nav{display:flex;gap:2px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:1.5rem;overflow-x:auto}
+.tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--color-text-secondary);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s}
+.tab:hover{color:var(--color-text-primary)}
+.tab.active{color:#1D9E75;border-bottom-color:#1D9E75}
+.panel{display:none}.panel.active{display:block}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:1.5rem}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem}
+.metric-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px}
+.metric-val{font-size:22px;font-weight:500}
+.metric-sub{font-size:11px;color:var(--color-text-tertiary);margin-top:2px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
+.card-title{font-size:14px;font-weight:500;margin-bottom:4px}
+.card-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.three-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:12px;color:var(--color-text-secondary)}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th{text-align:left;font-weight:500;font-size:12px;color:var(--color-text-secondary);padding:6px 8px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.table td{padding:8px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.table tr:last-child td{border-bottom:none}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
+.badge-green{background:#EAF3DE;color:#27500A}
+.badge-amber{background:#FAEEDA;color:#633806}
+.badge-red{background:#FCEBEB;color:#791F1F}
+.badge-blue{background:#E6F1FB;color:#0C447C}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px}
+.bar-label{width:80px;color:var(--color-text-secondary);text-align:right;flex-shrink:0}
+.bar-track{flex:1;background:var(--color-background-secondary);border-radius:3px;height:20px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:500;color:#fff;transition:width .6s}
+.timeline{position:relative;padding-left:20px;border-left:0.5px solid var(--color-border-secondary)}
+.tl-item{margin-bottom:1.25rem;position:relative}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:#1D9E75;position:absolute;left:-24px;top:4px}
+.tl-year{font-size:11px;color:#1D9E75;font-weight:500;margin-bottom:2px}
+.tl-text{font-size:13px;color:var(--color-text-primary)}
+.tl-sub{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.player-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.player-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem}
+.player-name{font-size:14px;font-weight:500;margin-bottom:2px}
+.player-country{font-size:11px;color:var(--color-text-secondary);margin-bottom:8px}
+.share-bar{background:var(--color-background-primary);border-radius:3px;height:6px;overflow:hidden;margin-bottom:4px}
+.share-fill{height:100%;border-radius:3px}
+.share-num{font-size:12px;font-weight:500}
+</style>
+
+<div class="wrap">
+<div class="nav" id="nav">
+  <button class="tab active" data-tab="overview">Overview</button>
+  <button class="tab" data-tab="market">Market share</button>
+  <button class="tab" data-tab="players">Key players</button>
+  <button class="tab" data-tab="trends">Growth trends</button>
+  <button class="tab" data-tab="outlook">Outlook</button>
+</div>
+
+<div id="overview" class="panel active">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Global EV sales 2024</div><div class="metric-val">17.1M</div><div class="metric-sub">units sold worldwide</div></div>
+    <div class="metric"><div class="metric-label">YoY growth</div><div class="metric-val">+25%</div><div class="metric-sub">vs 2023</div></div>
+    <div class="metric"><div class="metric-label">EV market share</div><div class="metric-val">18.4%</div><div class="metric-sub">of all new car sales</div></div>
+    <div class="metric"><div class="metric-label">Charging stations</div><div class="metric-val">15M+</div><div class="metric-sub">public ports globally</div></div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Sales by region 2024</div>
+      <div class="card-sub">Million units</div>
+      <div class="bar-row"><div class="bar-label">China</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#1D9E75">9.5M</div></div></div>
+      <div class="bar-row"><div class="bar-label">Europe</div><div class="bar-track"><div class="bar-fill" style="width:32%;background:#378ADD">3.2M</div></div></div>
+      <div class="bar-row"><div class="bar-label">USA</div><div class="bar-track"><div class="bar-fill" style="width:26%;background:#7F77DD">1.9M</div></div></div>
+      <div class="bar-row"><div class="bar-label">SE Asia</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:#D85A30">0.8M</div></div></div>
+      <div class="bar-row"><div class="bar-label">Others</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:#888780">1.7M</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">EV type breakdown</div>
+      <div class="card-sub">Share of EV sales</div>
+      <div style="position:relative;height:180px"><canvas id="typeChart" role="img" aria-label="BEV 73%, PHEV 27%">BEV 73%, PHEV 27%</canvas></div>
+      <div class="legend">
+        <span><span class="dot" style="background:#1D9E75"></span>BEV 73%</span>
+        <span><span class="dot" style="background:#378ADD"></span>PHEV 27%</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Adoption pace — EV share of total auto sales by region</div>
+    <div class="card-sub">Percentage of new car sales that are electric</div>
+    <div style="position:relative;height:200px"><canvas id="adoptChart" role="img" aria-label="Bar chart of EV adoption rate by region">Norway 90%, China 38%, Europe 22%, UK 19%, USA 9%, SE Asia 6%</canvas></div>
+  </div>
+</div>
+
+<div id="market" class="panel">
+  <div class="two-col" style="margin-bottom:12px">
+    <div class="card">
+      <div class="card-title">Top 3 general industry players</div>
+      <div class="card-sub">Thailand market share %</div>
+      <div style="position:relative;height:200px"><canvas id="genChart" role="img" aria-label="Toyota 39.3%, Isuzu 32.8%, Honda 27.9%">Toyota 39.3%, Isuzu 32.8%, Honda 27.9%</canvas></div>
+      <div class="legend">
+        <span><span class="dot" style="background:#22c4ef"></span>Toyota 39.3%</span>
+        <span><span class="dot" style="background:#a78bfa"></span>Isuzu 32.8%</span>
+        <span><span class="dot" style="background:#c084fc"></span>Honda 27.9%</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Top 5 EV segment players</div>
+      <div class="card-sub">Thailand EV market share %</div>
+      <div style="position:relative;height:200px"><canvas id="evSegChart" role="img" aria-label="BYD 33.3%, MG 26.7%, GWM 20%, Tesla 13.3%, Neta 6.7%">BYD 33.3%, MG 26.7%, GWM 20%, Tesla 13.3%, Neta 6.7%</canvas></div>
+      <div class="legend">
+        <span><span class="dot" style="background:#f72bd6"></span>BYD 33.3%</span>
+        <span><span class="dot" style="background:#f97060"></span>MG 26.7%</span>
+        <span><span class="dot" style="background:#fb923c"></span>GWM 20%</span>
+        <span><span class="dot" style="background:#fbbf24"></span>Tesla 13.3%</span>
+        <span><span class="dot" style="background:#fdba74"></span>Neta 6.7%</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Global EV brand ranking 2024</div>
+    <div class="card-sub">Estimated global market share %</div>
+    <div class="bar-row"><div class="bar-label">BYD</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:#f72bd6">17.1%</div></div></div>
+    <div class="bar-row"><div class="bar-label">Tesla</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#e24b4a">13.8%</div></div></div>
+    <div class="bar-row"><div class="bar-label">SAIC/MG</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#fb923c">7.1%</div></div></div>
+    <div class="bar-row"><div class="bar-label">VW Group</div><div class="bar-track"><div class="bar-fill" style="width:24%;background:#378ADD">6.1%</div></div></div>
+    <div class="bar-row"><div class="bar-label">GM</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:#7F77DD">5.0%</div></div></div>
+    <div class="bar-row"><div class="bar-label">Stellantis</div><div class="bar-track"><div class="bar-fill" style="width:16%;background:#888780">4.1%</div></div></div>
+    <div class="bar-row"><div class="bar-label">Hyundai-Kia</div><div class="bar-track"><div class="bar-fill" style="width:14%;background:#1D9E75">3.6%</div></div></div>
+  </div>
+</div>
+
+<div id="players" class="panel">
+  <div class="metrics" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+    <div class="metric"><div class="metric-label">Chinese brands</div><div class="metric-val">58%</div><div class="metric-sub">of global EV sales</div></div>
+    <div class="metric"><div class="metric-label">Active EV models</div><div class="metric-val">500+</div><div class="metric-sub">globally available</div></div>
+    <div class="metric"><div class="metric-label">New entrants 2024</div><div class="metric-val">40+</div><div class="metric-sub">brands launched EVs</div></div>
+  </div>
+  <div class="player-grid">
+    <div class="player-card">
+      <div class="player-name">BYD</div>
+      <div class="player-country">China — Shenzhen</div>
+      <div class="share-bar"><div class="share-fill" style="width:68%;background:#f72bd6"></div></div>
+      <div class="share-num" style="color:#993556">17.1% global share</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">Largest EV maker by volume. Leads Thailand EV market at 33.3%.</div>
+      <div style="margin-top:8px"><span class="badge badge-green">BEV + PHEV</span></div>
+    </div>
+    <div class="player-card">
+      <div class="player-name">Tesla</div>
+      <div class="player-country">USA — Austin TX</div>
+      <div class="share-bar"><div class="share-fill" style="width:55%;background:#e24b4a"></div></div>
+      <div class="share-num" style="color:#A32D2D">13.8% global share</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">Pioneer in premium BEV. Strong Supercharger network advantage.</div>
+      <div style="margin-top:8px"><span class="badge badge-red">BEV only</span></div>
+    </div>
+    <div class="player-card">
+      <div class="player-name">MG / SAIC</div>
+      <div class="player-country">China / UK heritage</div>
+      <div class="share-bar"><div class="share-fill" style="width:28%;background:#fb923c"></div></div>
+      <div class="share-num" style="color:#854F0B">7.1% global share</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">Fastest growing in SE Asia. 26.7% share in Thailand EV segment.</div>
+      <div style="margin-top:8px"><span class="badge badge-amber">BEV + PHEV</span></div>
+    </div>
+    <div class="player-card">
+      <div class="player-name">GWM / Ora</div>
+      <div class="player-country">China — Baoding</div>
+      <div class="share-bar"><div class="share-fill" style="width:20%;background:#378ADD"></div></div>
+      <div class="share-num" style="color:#185FA5">5.0% regional share</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">Aggressive pricing strategy in ASEAN. 20% Thailand EV market.</div>
+      <div style="margin-top:8px"><span class="badge badge-blue">BEV</span></div>
+    </div>
+    <div class="player-card">
+      <div class="player-name">Neta / Hozon</div>
+      <div class="player-country">China — Tongxiang</div>
+      <div class="share-bar"><div class="share-fill" style="width:10%;background:#7F77DD"></div></div>
+      <div class="share-num" style="color:#534AB7">6.7% Thailand share</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">Budget-focused EV brand targeting first-time EV buyers in Asia.</div>
+      <div style="margin-top:8px"><span class="badge badge-blue">BEV</span></div>
+    </div>
+    <div class="player-card">
+      <div class="player-name">VW Group</div>
+      <div class="player-country">Germany — Wolfsburg</div>
+      <div class="share-bar"><div class="share-fill" style="width:24%;background:#1D9E75"></div></div>
+      <div class="share-num" style="color:#085041">6.1% global share</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">ID. series leading European EV push. Audi, Porsche EV lineup expanding.</div>
+      <div style="margin-top:8px"><span class="badge badge-green">BEV + PHEV</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="trends" class="panel">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">2020 sales</div><div class="metric-val">3.1M</div><div class="metric-sub">units</div></div>
+    <div class="metric"><div class="metric-label">2022 sales</div><div class="metric-val">10.5M</div><div class="metric-sub">units</div></div>
+    <div class="metric"><div class="metric-label">2024 sales</div><div class="metric-val">17.1M</div><div class="metric-sub">units</div></div>
+    <div class="metric"><div class="metric-label">CAGR 2020–24</div><div class="metric-val">53%</div><div class="metric-sub">compound annual growth</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Global EV sales growth 2019–2024</div>
+    <div class="card-sub">Million units per year</div>
+    <div style="position:relative;height:220px"><canvas id="growthChart" role="img" aria-label="Line chart showing EV sales growing from 2.2M in 2019 to 17.1M in 2024">2019: 2.2M, 2020: 3.1M, 2021: 6.6M, 2022: 10.5M, 2023: 13.7M, 2024: 17.1M</canvas></div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Average battery cost trend</div>
+      <div class="card-sub">USD per kWh</div>
+      <div style="position:relative;height:180px"><canvas id="costChart" role="img" aria-label="Battery cost declining from $1100 in 2010 to $115 in 2024">2010: $1100, 2015: $350, 2020: $135, 2024: $115</canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Key growth drivers</div>
+      <div class="card-sub">Ranked by impact</div>
+      <div class="bar-row"><div class="bar-label">Policy</div><div class="bar-track"><div class="bar-fill" style="width:88%;background:#1D9E75">High</div></div></div>
+      <div class="bar-row"><div class="bar-label">Battery cost</div><div class="bar-track"><div class="bar-fill" style="width:82%;background:#378ADD">High</div></div></div>
+      <div class="bar-row"><div class="bar-label">Charging infra</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:#7F77DD">Medium</div></div></div>
+      <div class="bar-row"><div class="bar-label">Range anxiety</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#fb923c">Medium</div></div></div>
+      <div class="bar-row"><div class="bar-label">Brand trust</div><div class="bar-track"><div class="bar-fill" style="width:44%;background:#888780">Lower</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="outlook" class="panel">
+  <div class="metrics" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+    <div class="metric"><div class="metric-label">Forecast 2030</div><div class="metric-val">45M</div><div class="metric-sub">units/year projected</div></div>
+    <div class="metric"><div class="metric-label">EV share 2030</div><div class="metric-val">40%</div><div class="metric-sub">of global auto sales</div></div>
+    <div class="metric"><div class="metric-label">Battery target</div><div class="metric-val">$75/kWh</div><div class="metric-sub">cost by 2030</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">EV sales forecast to 2030</div>
+    <div class="card-sub">Million units — base scenario</div>
+    <div style="position:relative;height:220px"><canvas id="forecastChart" role="img" aria-label="EV sales forecast rising from 17.1M in 2024 to 45M in 2030">2024: 17.1M, 2025: 21M, 2026: 25M, 2027: 30M, 2028: 36M, 2029: 40M, 2030: 45M</canvas></div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Key milestones ahead</div>
+      <div class="card-sub">Industry roadmap</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025</div><div class="tl-text">Solid-state battery pilots begin</div><div class="tl-sub">Toyota, Samsung SDI lead production trials</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2026</div><div class="tl-text">EU new ICE sales effectively end</div><div class="tl-sub">2035 ban brings early market shift</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2027</div><div class="tl-text">EV price parity with ICE in Europe</div><div class="tl-sub">Battery costs drop below $100/kWh</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2030</div><div class="tl-text">40% global EV market share target</div><div class="tl-sub">IEA Net Zero scenario milestone</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Regional outlook 2030</div>
+      <div class="card-sub">Projected EV penetration rate</div>
+      <div class="bar-row"><div class="bar-label">Europe</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#1D9E75">70%</div></div></div>
+      <div class="bar-row"><div class="bar-label">China</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:#378ADD">65%</div></div></div>
+      <div class="bar-row"><div class="bar-label">USA</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:#7F77DD">35%</div></div></div>
+      <div class="bar-row"><div class="bar-label">SE Asia</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#fb923c">28%</div></div></div>
+      <div class="bar-row"><div class="bar-label">Global avg</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:#888780">40%</div></div></div>
+      <div style="margin-top:1rem">
+        <button onclick="sendPrompt('What are the biggest risks to EV adoption in Southeast Asia by 2030?')" style="font-size:12px;padding:6px 12px;width:100%">Explore SE Asia risks ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+document.getElementById('nav').addEventListener('click', function(e){
+  const btn = e.target.closest('.tab');
+  if(!btn) return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.tab).classList.add('active');
+  if(!btn.dataset.charted){
+    btn.dataset.charted='1';
+    initCharts(btn.dataset.tab);
+  }
+});
+
+const isDark = matchMedia('(prefers-color-scheme:dark)').matches;
+const gc = isDark?'rgba(255,255,255,.12)':'rgba(0,0,0,.07)';
+const tc = isDark?'#c2c0b6':'#3d3d3a';
+const baseFont={family:'"Anthropic Sans",sans-serif',size:11};
+
+function donut(id,labels,data,colors){
+  new Chart(document.getElementById(id),{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderColor:isDark?'#1a1a1a':'#fff',borderWidth:3,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}}});
+}
+
+function initCharts(tab){
+  if(tab==='overview'){
+    donut('typeChart',['BEV','PHEV'],[73,27],['#1D9E75','#378ADD']);
+    new Chart(document.getElementById('adoptChart'),{type:'bar',data:{labels:['Norway','China','Europe','UK','USA','SE Asia'],datasets:[{label:'EV share %',data:[90,38,22,19,9,6],backgroundColor:['#1D9E75','#f72bd6','#378ADD','#7F77DD','#e24b4a','#fb923c'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc,font:baseFont},grid:{color:gc}},y:{ticks:{color:tc,font:baseFont,callback:v=>v+'%'},grid:{color:gc},max:100}}}});
+  }
+  if(tab==='market'){
+    donut('genChart',['Toyota','Isuzu','Honda'],[39.3,32.8,27.9],['#22c4ef','#a78bfa','#c084fc']);
+    donut('evSegChart',['BYD','MG','GWM','Tesla','Neta'],[33.3,26.7,20,13.3,6.7],['#f72bd6','#f97060','#fb923c','#fbbf24','#fdba74']);
+  }
+  if(tab==='trends'){
+    new Chart(document.getElementById('growthChart'),{type:'line',data:{labels:['2019','2020','2021','2022','2023','2024'],datasets:[{label:'EV sales (M)',data:[2.2,3.1,6.6,10.5,13.7,17.1],borderColor:'#1D9E75',backgroundColor:'rgba(29,158,117,.12)',fill:true,tension:.35,pointBackgroundColor:'#1D9E75',pointRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc,font:baseFont},grid:{color:gc}},y:{ticks:{color:tc,font:baseFont,callback:v=>v+'M'},grid:{color:gc}}}}});
+    new Chart(document.getElementById('costChart'),{type:'bar',data:{labels:['2010','2015','2020','2024'],datasets:[{label:'$/kWh',data:[1100,350,135,115],backgroundColor:['#E24B4A','#fb923c','#fbbf24','#1D9E75'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc,font:baseFont},grid:{color:gc}},y:{ticks:{color:tc,font:baseFont,callback:v=>'$'+v},grid:{color:gc}}}}});
+  }
+  if(tab==='forecast'||tab==='outlook'){
+    new Chart(document.getElementById('forecastChart'),{type:'line',data:{labels:['2024','2025','2026','2027','2028','2029','2030'],datasets:[{label:'Sales (M)',data:[17.1,21,25,30,36,40,45],borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,.1)',fill:true,tension:.35,borderDash:[0,0],pointBackgroundColor:'#378ADD',pointRadius:5},{label:'Conservative',data:[17.1,19,22,26,30,34,38],borderColor:'#888780',backgroundColor:'transparent',fill:false,tension:.35,borderDash:[5,4],pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc,font:baseFont},grid:{color:gc}},y:{ticks:{color:tc,font:baseFont,callback:v=>v+'M'},grid:{color:gc}}}}});
+  }
+}
+
+initCharts('overview');
+</script>
